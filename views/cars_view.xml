@@ -5,9 +5,26 @@
         <field name="res_model">car.feature</field>
         <field name="view_mode">tree,form</field>
     </record>
-    
-    <menuitem id="first_level_menu" name="Odoo Cars">
 
+    <menuitem id="test_menu_root" name="Odoo Cars">
+        <menuitem id="test_first_level_menu" name="Cars">
+            <menuitem id="car_feature_menu_action" action="car_feature_action"/>
+        </menuitem>
     </menuitem>
+
+    <!-- tree view -->
+    <record id="car_feature_view_tree" model="ir.ui.view">
+        <field name="name">car.feature.view.tree</field>
+        <field name="model">car.feature</field>
+        <field name="arch" type="xml">
+        <tree>
+            <field name="name"/>
+            <field name="description"/>
+
+        </tree>
+        
+        </field>
+
+    </record>
 
 </odoo>
