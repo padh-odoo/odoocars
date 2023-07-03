@@ -1,4 +1,13 @@
 <?xml version='1.0' encoding='utf-8'?>
 <odoo>
+    <record id='car_feature_action' model='ir.actions.act_window'>
+        <field name="name">Odoo Cars</field>
+        <field name="res_model">car.feature</field>
+        <field name="view_mode">tree,form</field>
+    </record>
     
+    <menuitem id="first_level_menu" name="Odoo Cars">
+
+    </menuitem>
+
 </odoo>
