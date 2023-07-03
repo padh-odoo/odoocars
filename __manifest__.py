@@ -9,8 +9,8 @@
     'website': 'https://www.odoo.com/',
     'summary': 'This is Odoo Cars ',
     'data':[
-                  'secuirity/ir.model.access.csv',
                   'views/cars_view.xml',
+                  'secuirity/ir.model.access.csv',
          
      ]
 }
