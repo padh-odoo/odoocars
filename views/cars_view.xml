@@ -3,12 +3,19 @@
     <record id='car_feature_action' model='ir.actions.act_window'>
         <field name="name">Odoo Cars</field>
         <field name="res_model">car.feature</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">tree,form,kanban</field>
     </record>
 
-    <menuitem id="test_menu_root" name="Odoo Cars">
-        <menuitem id="test_first_level_menu" name="Cars">
-            <menuitem id="car_feature_menu_action" action="car_feature_action"/>
+    <menuitem id="first_level_menu" name="Odoo Cars">
+
+        <menuitem id="menu_advertisement" name="Cars" sequence="1">
+            <menuitem id="menu_adv_market" name="Cars" action="car_feature_action"/>
+        </menuitem>
+
+        <menuitem id="menu_finance_receivables" name="Configuration" sequence="2">
+            <menuitem id="menu_pro" name="Car Categories" sequence="1" action="car_categories_action"/>
+            <menuitem id="menu_fuel" name="Fuel Type" sequence="2" action="fuel_type_action"/>
+            <menuitem id="menu_brand" name="Car Brand" sequence="3" action="brand_type_action"/>
         </menuitem>
     </menuitem>
 
@@ -17,14 +24,103 @@
         <field name="name">car.feature.view.tree</field>
         <field name="model">car.feature</field>
         <field name="arch" type="xml">
-        <tree>
-            <field name="name"/>
-            <field name="description"/>
+            <tree>
+                <field name="name"/>
+                <field name="brand"/>
+                <field name="category"/>
+                <field name="fuel_id"/>
+            </tree>
 
-        </tree>
-        
         </field>
+    </record>
 
+    <!-- Form View -->
+
+    <record id="car_feature_view_form" model="ir.ui.view">
+        <field name="name">car.feature.view.form</field>
+        <field name="model">car.feature</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <div>
+                        <h1>
+
+                            <field name="name"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <field name="brand"/>
+                        <field name="category"/>
+                        <field name="fuel_id" widget="many2many_tags"/>
+                        <field name="description"/>
+                        <field name="selling_price"/>
+                        <field name="engine"/>
+                        <field name="boot_space"/>
+                        <field name="seating_capacity"/>
+                        <field name="mileage"/>
+                        <field name="transmission_type"/>
+
+                    </group>
+                    <notebook>
+                        <page string="Accessories">
+
+                        </page>
+                    </notebook>
+
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Search View -->
+    <record id="car_feature_search" model="ir.ui.view">
+        <field name="name">car.feature.view.search</field>
+        <field name="model">car.feature</field>
+        <field name="arch" type="xml">
+            <search string="">
+                <field name="name"/>
+                <field name="brand"/>
+                <field name="category"/>
+                <field name="fuel_id"/>
+
+                <separator/>
+                <filter string="Transmission Type" name="transmission_type" domain="[('transmission_type','in',['auto','manual'])]"/>
+                <group expand="1" string="Group By">
+                    <filter string="Brand" name="brand" context="{'group_by':'brand'}"/>
+                </group>
+                <group expand="1" string="Group By">
+                    <filter string="Category" name="category" context="{'group_by':'category'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <!-- kanban view -->
+    <record id="car_feature_search" model="ir.ui.view">
+        <field name="name">car.feature.view.kanban</field>
+        <field name="model">car.feature</field>
+        <field name="arch" type="xml">
+            <kanban class="o_res_partner_kanban">
+                <field name="name"/>
+        
+                <templates>
+                    <t t-name="kanban-box">
+                        <div t-attf-class="oe_kanban_global_click">
+                            <div class="o_kanban_image">
+                                <img alt="Avatar" t-att-src="kanban_image('res.partners', 'image_medium',record.id.raw_value)"/>
+                            </div>
+                            <div class="oe_kanban_details">
+                                <strong class="o_kanban_record_title">
+                                    <field name="category"/>
+                                </strong>
+
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+
+        </field>
     </record>
 
 </odoo>
