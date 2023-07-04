@@ -9,8 +9,11 @@
     'website': 'https://www.odoo.com/',
     'summary': 'This is Odoo Cars ',
     'data':[
-                  'views/cars_view.xml',
                   'secuirity/ir.model.access.csv',
+                  'views/car_category.xml',
+                  'views/car_fuel_type.xml',
+                  'views/car_brand.xml',
+                  'views/cars_view.xml',
          
      ]
 }
