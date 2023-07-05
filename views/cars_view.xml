@@ -29,6 +29,7 @@
                 <field name="brand"/>
                 <field name="category"/>
                 <field name="fuel_id"/>
+                <field name="model" options="{'format': 0}"/>
             </tree>
 
         </field>
@@ -42,6 +43,7 @@
         <field name="arch" type="xml">
             <form>
                 <sheet>
+                    <field name="image" widget='image' options='{"size":[240,240]}' />
                     <div>
                         <h1>
 
@@ -49,21 +51,42 @@
                         </h1>
                     </div>
                     <group>
-                        <field name="brand"/>
-                        <field name="category"/>
-                        <field name="fuel_id" widget="many2many_tags"/>
-                        <field name="description"/>
-                        <field name="selling_price"/>
-                        <field name="engine"/>
-                        <field name="boot_space"/>
-                        <field name="seating_capacity"/>
-                        <field name="mileage"/>
-                        <field name="transmission_type"/>
+                        <group>
+                            <field name="brand"/>
+                            <field name="category"/>
+                            <field name="fuel_id" widget="many2many_tags"/>
+                            <field name="selling_price"/>
+                            <field name="gst"/>
+                            <!-- <field name="total"/> -->
 
+                        </group>
+                        <group>
+                            <field name="engine"/>
+                            <field name="length"/>
+                            <field name="boot_space"/>
+                            <field name="seating_capacity"/>
+                            <field name="mileage"/>
+                            <field name="model" options="{'format': 0}"/>
+                            <field name="transmission_type"/>
+                            <field name="total_airbags"/>
+
+
+                        </group>
                     </group>
                     <notebook>
-                        <page string="Accessories">
+                        <page string="Description">
+                            <field name="description"/>
 
+                        </page>
+                        <page string="Accessories">
+                            <group>
+                                <field name="alloys"/>
+                                <field name="abs"/>
+                                <field name="airbag"/>
+                                <field name="airbag_passenger"/>
+                                <field name="fog_lights"/>
+
+                            </group>
                         </page>
                     </notebook>
 
@@ -102,7 +125,7 @@
         <field name="arch" type="xml">
             <kanban class="o_res_partner_kanban">
                 <field name="name"/>
-        
+
                 <templates>
                     <t t-name="kanban-box">
                         <div t-attf-class="oe_kanban_global_click">

@@ -5,3 +5,4 @@ class car_categories(models.Model):
     
     name=fields.Char("Title")
     category_ids=fields.One2many("car.feature",'category')
+    _sql_constraints=[('Check_Name','unique(name)','Category name already exist')]
