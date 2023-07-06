@@ -57,7 +57,7 @@
                             <field name="fuel_id" widget="many2many_tags"/>
                             <field name="selling_price"/>
                             <field name="gst"/>
-                            <!-- <field name="total"/> -->
+                            <field name="total"/>
 
                         </group>
                         <group>

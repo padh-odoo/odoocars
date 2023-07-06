@@ -17,10 +17,10 @@ class car_feature(models.Model):
     category=fields.Many2one("car.categories", string="Category")
     fuel_id=fields.Many2many("fuel.type",string="Fuel Type")
     brand=fields.Many2one("brand.type",string="Car Brand")
-    total_airbags=fields.Integer("Total AirBags")
     image=fields.Image("Image")
     length=fields.Float("Length")
     gst=fields.Selection(selection=[('gst12',"GST 12%"),("gst28","GST 28%")],string="GST")
+    total_airbags=fields.Integer("Total AirBags",compute="_compute_airbags",store=True)
     
     # bool fields
     fog_lights=fields.Boolean("Fog Lights")
@@ -28,28 +28,39 @@ class car_feature(models.Model):
     airbag_passenger=fields.Boolean("Passenger AirBag")
     alloys=fields.Boolean("Alloys")
     abs=fields.Boolean("ABS")
-    # total=fields.Integer("Total Price",compute="_total_price")
+    total=fields.Integer("Total Price",compute="_total_price",store=True)
     
     
     # To calculate total airbags
     
-    # @api.depends('airbag','airbag_passenger')
-    # def _compute_airbags(self):
-    #     for i in self:
-    #         if i.airbag==True:
-    #             i.total_airbags+=2
+    @api.depends('airbag','airbag_passenger')
+    def _compute_airbags(self):
+         for i in self:
+             if i.airbag:
+                 i.total_airbags+=2
+            
+             
+           
     
     
     
     
     # To calculate price after tax inclusion
-    # @api.depends('gst','selling_price')
-    # def _total_price(self):
-    #     for i in self:
-    #         if i.gst=="gst12":
-    #             i.total+=i.selling_price*12/100
+    @api.depends('fuel_id','selling_price','gst')
+    def _total_price(self):
+         for i in self:
+             if i.fuel_id.name=="Electric":
+                 i.total= i.selling_price +i.selling_price*12/100
+                 i.gst='gst12'
+                 
+             else:
+                 i.total= i.selling_price +i.selling_price*28/100
+             
+             
+             
+            
     
-    
+    # Python Constrints
     @api.constrains('selling_price')
     def check_selling_price(self):
         if self.selling_price<0:
