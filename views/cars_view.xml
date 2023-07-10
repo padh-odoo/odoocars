@@ -29,7 +29,7 @@
                 <field name="brand"/>
                 <field name="category"/>
                 <field name="fuel_id"/>
-                <field name="model" options="{'format': 0}"/>
+                
             </tree>
 
         </field>
@@ -43,7 +43,7 @@
         <field name="arch" type="xml">
             <form>
                 <sheet>
-                    <field name="image" widget='image' options='{"size":[240,240]}' />
+                    <!-- <field name="image" widget='image' options='{"size":[240,240]}' /> -->
                     <div>
                         <h1>
 
@@ -54,11 +54,10 @@
                         <group>
                             <field name="brand"/>
                             <field name="category"/>
-                            <field name="fuel_id" widget="many2many_tags"/>
+                            <field name="fuel_id" widget="many2many_tags" options="{'color_field': 'color'}"/>
                             <field name="selling_price"/>
                             <field name="gst"/>
-                            <field name="total"/>
-
+                            <field name="total" />
                         </group>
                         <group>
                             <field name="engine"/>
@@ -66,24 +65,22 @@
                             <field name="boot_space"/>
                             <field name="seating_capacity"/>
                             <field name="mileage"/>
-                            <field name="model" options="{'format': 0}"/>
+                            <field name="model" widget="char"/>
                             <field name="transmission_type"/>
                             <field name="total_airbags"/>
-
-
                         </group>
                     </group>
                     <notebook>
                         <page string="Description">
                             <field name="description"/>
-
                         </page>
                         <page string="Accessories">
                             <group>
                                 <field name="alloys"/>
                                 <field name="abs"/>
                                 <field name="airbag"/>
-                                <field name="airbag_passenger"/>
+                                <!-- Passenger airbag only if airbag selected -->
+                                <field name="airbag_passenger" attrs="{'invisible': [('airbag', '=', False)]}"/>
                                 <field name="fog_lights"/>
 
                             </group>

@@ -6,7 +6,7 @@ class car_feature(models.Model):
     _description="Features of Cars"
     
     name=fields.Char("Title",required=True)
-    description=fields.Text("Description",required=True)
+    description=fields.Text("Description")
     selling_price=fields.Integer("Selling Price")
     engine=fields.Integer("Engine")
     boot_space=fields.Integer("Boot Space")
@@ -35,12 +35,17 @@ class car_feature(models.Model):
     
     @api.depends('airbag','airbag_passenger')
     def _compute_airbags(self):
-         for i in self:
-             if i.airbag:
-                 i.total_airbags+=2
+        for i in self:
+            if i.airbag:
+                i.total_airbags=2
+                if i.airbag_passenger:
+                    i.total_airbags+=4
+            else:
+                i.total_airbags=0
+
             
-             
-           
+    
+    
     
     
     
@@ -48,18 +53,14 @@ class car_feature(models.Model):
     # To calculate price after tax inclusion
     @api.depends('fuel_id','selling_price','gst')
     def _total_price(self):
-         for i in self:
-             if i.fuel_id.name=="Electric":
-                 i.total= i.selling_price +i.selling_price*12/100
-                 i.gst='gst12'
-                 
-             else:
-                 i.total= i.selling_price +i.selling_price*28/100
-             
-             
-             
-            
-    
+        for i in self:
+            if (i.fuel_id.name=="Electric"):
+                i.total= i.selling_price +i.selling_price*12/100
+                i.gst='gst12'  
+            else:
+                i.total= i.selling_price +i.selling_price*28/100
+                i.gst="gst28"     
+        
     # Python Constrints
     @api.constrains('selling_price')
     def check_selling_price(self):
