@@ -4,6 +4,7 @@ from odoo.exceptions import UserError,ValidationError
 class car_feature(models.Model):
     _name="car.feature"
     _description="Features of Cars"
+    _inherit=["mail.thread","mail.activity.mixin"]
     
     name=fields.Char("Title",required=True)
     description=fields.Text("Description")
@@ -12,11 +13,12 @@ class car_feature(models.Model):
     boot_space=fields.Integer("Boot Space")
     seating_capacity=fields.Integer("Seating Capacity")
     mileage=fields.Integer("Mileage")
-    model=fields.Integer("Model")
+    model=fields.Integer("Model",tracking=True)
     transmission_type=fields.Selection(selection=[("manual","Manual"),("auto","Automatic")], string="Transmission Type",default="manual")
     category=fields.Many2one("car.categories", string="Category")
     fuel_id=fields.Many2many("fuel.type",string="Fuel Type")
     brand=fields.Many2one("brand.type",string="Car Brand")
+    offer_id=fields.Many2many("car.offer",string="Offer")
     image=fields.Image("Image")
     length=fields.Float("Length")
     gst=fields.Selection(selection=[('gst12',"GST 12%"),("gst28","GST 28%")],string="GST")
@@ -44,14 +46,8 @@ class car_feature(models.Model):
                 i.total_airbags=0
 
             
-    
-    
-    
-    
-    
-    
-    # To calculate price after tax inclusion
-    @api.depends('fuel_id','selling_price','gst')
+    # To calculate price after tax inclusion and  offer
+    @api.depends('fuel_id','selling_price','gst','offer_id')
     def _total_price(self):
         for i in self:
             if (i.fuel_id.name=="Electric"):
@@ -59,13 +55,15 @@ class car_feature(models.Model):
                 i.gst='gst12'  
             else:
                 i.total= i.selling_price +i.selling_price*28/100
-                i.gst="gst28"     
-        
+                i.gst="gst28" 
+            """if i.offer_id:
+               if (i.offer_id.name=="Launch"):
+                i.total=i.selling_price-i.selling_price*10/100
+               elif (i.offer_id.name=="Festive"):
+                i.total=i.selling_price-i.selling_price*5/100 """
+                
     # Python Constrints
     @api.constrains('selling_price')
     def check_selling_price(self):
         if self.selling_price<0:
             raise ValidationError("Selling Price Must be Positive")
-    
-    
-    

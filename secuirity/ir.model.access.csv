@@ -3,3 +3,4 @@ access_car_feature,access_car_feature,model_car_feature,base.group_user,1,1,1,1
 access_car_categories,access_car_categories,model_car_categories,base.group_user,1,1,1,1
 access_fuel_type,access_fuel_type,model_fuel_type,base.group_user,1,1,1,1
 access_brand_type,access_brand_type,model_brand_type,base.group_user,1,1,1,1
+access_car_offer,access_car_offer,model_car_offer,base.group_user,1,1,1,1
