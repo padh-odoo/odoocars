@@ -5,6 +5,6 @@ class car_categories(models.Model):
     _sequence="sequence"
     
     sequence=fields.Integer("Sequence",default=1)
-    name=fields.Char("Title")
+    name=fields.Char("Title",required=True)
     category_ids=fields.One2many("car.feature",'category')
     _sql_constraints=[('Check_Name','unique(name)','Category name already exist')]
