@@ -56,7 +56,7 @@ class car_feature(models.Model):
     
     
     # To calculate price after tax inclusion
-    @api.depends('fuel_id','selling_price','gst')
+    @api.depends('fuel_id','selling_price','gst','offer_id')
     def _total_price(self):
         for i in self:
             if (i.fuel_id.name=="Electric"):
@@ -64,7 +64,12 @@ class car_feature(models.Model):
                 i.gst='gst12'  
             else:
                 i.total= i.selling_price +i.selling_price*28/100
-                i.gst="gst28"     
+                i.gst="gst28" 
+            """if i.offer_id:
+               if (i.offer_id.name=="Launch"):
+                i.total=i.selling_price-i.selling_price*10/100
+               elif (i.offer_id.name=="Festive"):
+                i.total=i.selling_price-i.selling_price*5/100 """
         
     # Python Constrints
     @api.constrains('selling_price')
