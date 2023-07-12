@@ -18,6 +18,7 @@ class car_feature(models.Model):
     fuel_id=fields.Many2many("fuel.type",string="Fuel Type")
     brand=fields.Many2one("brand.type",string="Car Brand")
     image=fields.Image("Image")
+    state=fields.Selection(selection=[("INS","IN STOCK"),("S","SOLD")],default="INS")
     length=fields.Float("Length")
     gst=fields.Selection(selection=[('gst12',"GST 12%"),("gst28","GST 28%")],string="GST")
     total_airbags=fields.Integer("Total AirBags",compute="_compute_airbags",store=True)
@@ -45,8 +46,12 @@ class car_feature(models.Model):
 
             
     
-    
-    
+    def action_sold(self):
+        
+        if self.state=="INS":
+            self.state="S"
+        else:
+            raise UserError("You cannot sold")
     
     
     
