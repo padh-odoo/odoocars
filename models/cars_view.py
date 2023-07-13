@@ -12,6 +12,8 @@ class car_feature(models.Model):
     engine=fields.Integer("Engine")
     boot_space=fields.Integer("Boot Space")
     seating_capacity=fields.Integer("Seating Capacity")
+    state=fields.Selection(selection=[("INS","IN STOCK"),("S","SOLD")],default="INS")
+
     mileage=fields.Integer("Mileage")
     model=fields.Integer("Model",tracking=True)
     transmission_type=fields.Selection(selection=[("manual","Manual"),("auto","Automatic")], string="Transmission Type",default="manual")
@@ -46,6 +48,14 @@ class car_feature(models.Model):
                 i.total_airbags=0
 
             
+    def action_sold(self):
+        if self.state=="INS":
+          self.state="S"
+        else:
+         raise UserError("You cannot sold")
+     
+     
+     
     # To calculate price after tax inclusion and  offer
     @api.depends('fuel_id','selling_price','gst','offer_id')
     def _total_price(self):
