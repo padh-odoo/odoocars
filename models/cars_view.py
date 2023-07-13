@@ -8,7 +8,7 @@ class car_feature(models.Model):
     
     name=fields.Char("Title",required=True)
     description=fields.Text("Description")
-    selling_price=fields.Integer("Selling Price")
+    selling_price=fields.Integer("Selling Price",tracking=True)
     engine=fields.Integer("Engine")
     boot_space=fields.Integer("Boot Space")
     seating_capacity=fields.Integer("Seating Capacity")
