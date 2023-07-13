@@ -30,7 +30,7 @@
                 <field name="brand"/>
                 <field name="category"/>
                 <field name="fuel_id"/>
-                
+
             </tree>
 
         </field>
@@ -45,6 +45,14 @@
             <form>
                 <sheet>
                     <!-- <field name="image" widget='image' options='{"size":[240,240]}' /> -->
+                    <div>
+                        <div attrs="{'invisible': [('state', 'in', ['S'])]}">
+                            <button name="action_sold" type="object" string="Sold" class="oe_highlight" />
+                        </div>
+                        <header>
+                            <field name="state" widget="statusbar" />
+                        </header>
+                    </div>
                     <div>
                         <h1>
 
