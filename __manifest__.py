@@ -12,7 +12,6 @@
     'data':[
                   'secuirity/ir.model.access.csv',
                   'views/car_category.xml',
-                  'views/car_fuel_type.xml',
                   'views/car_brand.xml',
                   'views/car_offer.xml',
                   'views/cars_view.xml',

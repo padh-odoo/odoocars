@@ -18,7 +18,7 @@ class car_feature(models.Model):
     model=fields.Integer("Model",tracking=True)
     transmission_type=fields.Selection(selection=[("manual","Manual"),("auto","Automatic")], string="Transmission Type",default="manual")
     category=fields.Many2one("car.categories", string="Category")
-    fuel_id=fields.Many2many("fuel.type",string="Fuel Type")
+    fuel_id=fields.Selection(selection=[("H","Hybrid"),("P","Petrol")])
     brand=fields.Many2one("brand.type",string="Car Brand")
     offer_id=fields.Many2many("car.offer",string="Offer")
     image=fields.Image("Image")
@@ -49,6 +49,7 @@ class car_feature(models.Model):
 
             
     def action_sold(self):
+        print(".................................")
         if self.state=="INS":
           self.state="S"
         else:
@@ -60,7 +61,7 @@ class car_feature(models.Model):
     @api.depends('fuel_id','selling_price','gst','offer_id')
     def _total_price(self):
         for i in self:
-            if (i.fuel_id.name=="Electric"):
+            if (i.fuel_id=="H"):
                 i.total= i.selling_price +i.selling_price*12/100
                 i.gst='gst12'  
             else:
@@ -77,3 +78,5 @@ class car_feature(models.Model):
     def check_selling_price(self):
         if self.selling_price<0:
             raise ValidationError("Selling Price Must be Positive")
+    
+    
