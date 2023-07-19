@@ -14,7 +14,7 @@
 
         <menuitem id="menu_finance_receivables" name="Configuration" sequence="2">
             <menuitem id="menu_pro" name="Car Categories" sequence="1" action="car_categories_action"/>
-            <menuitem id="menu_fuel" name="Fuel Type" sequence="2" action="fuel_type_action"/>
+            <!-- <menuitem id="menu_fuel" name="Fuel Type" sequence="2" action="fuel_type_action"/> -->
             <menuitem id="menu_brand" name="Car Brand" sequence="3" action="brand_type_action"/>
             <menuitem id="menu_offer" name="Car Offer" sequence="4" action="car_offer_action"/>
         </menuitem>
@@ -29,7 +29,7 @@
                 <field name="name"/>
                 <field name="brand"/>
                 <field name="category"/>
-                <field name="fuel_id"/>
+                <!-- <field name="fuel_id"/> -->
 
             </tree>
 
@@ -64,7 +64,7 @@
                             <field name="brand"/>
                             <field name="category"/>
                             <field name="offer_id" widget="many2many_tags"/>
-                            <field name="fuel_id" widget="many2many_tags" options="{'color_field': 'color'}"/>
+                            <field name="fuel_id"/>
                             <field name="selling_price"/>
                             <field name="gst"/>
                             <field name="total" />
@@ -118,7 +118,7 @@
                 <field name="name"/>
                 <field name="brand"/>
                 <field name="category"/>
-                <field name="fuel_id"/>
+                <!-- <field name="fuel_id"/> -->
 
                 <separator/>
                 <filter string="Transmission Type" name="transmission_type" domain="[('transmission_type','in',['auto','manual'])]"/>
