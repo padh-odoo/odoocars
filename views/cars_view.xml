@@ -26,6 +26,9 @@
         <field name="model">car.feature</field>
         <field name="arch" type="xml">
             <tree>
+                <header>
+                    <button name="wizard" type="object" string="Wizard" class="oe_highlight"/>
+                </header>
                 <field name="name"/>
                 <field name="brand"/>
                 <field name="category"/>
@@ -61,6 +64,10 @@
                     </div>
                     <group>
                         <group>
+                            <field name="employee_id"/>
+                            <field name="mobile"/>
+                            <field name="name_imp"/>
+                            <field name="department"/>
                             <field name="brand"/>
                             <field name="category"/>
                             <field name="offer_id" widget="many2many_tags"/>

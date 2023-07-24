@@ -1,5 +1,11 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_car_feature,access_car_feature,model_car_feature,base.group_user,1,1,1,1
-access_car_categories,access_car_categories,model_car_categories,base.group_user,1,1,1,1
-access_brand_type,access_brand_type,model_brand_type,base.group_user,1,1,1,1
-access_car_offer,access_car_offer,model_car_offer,base.group_user,1,1,1,1
+access_car_feature,access_car_feature,model_car_feature,odoocars_group_user,1,1,0,0
+access_car_categories,access_car_categories,model_car_categories,odoocars_group_user,1,0,0,0
+access_brand_type,access_brand_type,model_brand_type,odoocars_group_user,1,1,0,0,
+access_car_offer,access_car_offer,model_car_offer,odoocars_group_user,1,1,0,0,
+
+id1,access_car_feature1,model_car_feature,odoocars_group_admin,1,1,1,1
+id2,access_car_categories1,model_car_categories,odoocars_group_admin,1,1,1,1
+id3,access_brand_type1,model_brand_type,odoocars_group_admin,1,1,1,1
+id4,access_car_offer1,model_car_offer,odoocars_group_admin,1,1,1,1
+odoocars.access_odoocars_wizard,access_odoocars_wizard,odoocars.model_odoocars_wizard,base.group_user,1,1,1,1

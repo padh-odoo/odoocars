@@ -34,6 +34,14 @@ class car_feature(models.Model):
     abs=fields.Boolean("ABS")
     total=fields.Integer("Total Price",compute="_total_price",store=True)
     
+    employee_id = fields.Many2one('hr.employee', string="Employee")
+    mobile=fields.Char(related="employee_id.mobile_phone")
+    name_imp=fields.Char(related="employee_id.name")
+    department=fields.Many2one(related="employee_id.department_id")
+    
+    
+    
+    
     
     # To calculate total airbags
     
@@ -49,7 +57,7 @@ class car_feature(models.Model):
 
             
     def action_sold(self):
-        print(".................................")
+        print(".................................", self.employee_id.name)
         if self.state=="INS":
           self.state="S"
         else:
@@ -79,4 +87,12 @@ class car_feature(models.Model):
         if self.selling_price<0:
             raise ValidationError("Selling Price Must be Positive")
     
+    
+    def wizard(self):
+        return{
+		    'type': 'ir.actions.act_window',
+			'res_model': 'odoocars.wizard',
+			'view_mode': 'form',
+			'target': 'new',	
+		}	
     
