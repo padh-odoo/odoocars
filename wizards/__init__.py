@@ -1,0 +1,1 @@
+from . import odoocars_wizard

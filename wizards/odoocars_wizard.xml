@@ -1,0 +1,29 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    <record id="odoocars_wizard_view_form" model="ir.ui.view">
+        <field name="name">odoocars.wizard.form</field>
+        <field name="model">odoocars.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Test">
+                <group class="oe_title">
+
+                    <field name="new_name"/>
+                </group>
+                <footer>
+                    <button string="Cancel" class="btn-secondary" special="cancel"/> 
+                    <!-- <button name="action_set_category" string="SET" class="btn-secondary"/>  -->
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="test_model_wizard_action" model="ir.actions.act_window">
+        <field name="name">Odoocars Wizard</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">odoocars.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="odoocars_wizard_view_form"/>
+        <field name="target">new</field>
+    </record>
+    
+</odoo>
