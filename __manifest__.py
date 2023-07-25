@@ -17,6 +17,8 @@
                   'views/car_brand.xml',
                   'views/car_offer.xml',
                   'views/cars_view.xml',
+                  'report/odoocars_report.xml',
+                  'report/odoocars_template.xml',
      ],
     'demo':[
         'data/brand.type.csv',

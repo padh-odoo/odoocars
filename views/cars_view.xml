@@ -29,13 +29,13 @@
                 <header>
                     <button name="wizard" type="object" string="Wizard" class="oe_highlight"/>
                 </header>
+                <field name="employee_id"/>
+
                 <field name="name"/>
                 <field name="brand"/>
                 <field name="category"/>
                 <!-- <field name="fuel_id"/> -->
-
             </tree>
-
         </field>
     </record>
 
@@ -50,7 +50,7 @@
                     <!-- <field name="image" widget='image' options='{"size":[240,240]}' /> -->
                     <div>
                         <div attrs="{'invisible': [('state', 'in', ['S'])]}">
-                            <button name="action_sold" type="object" string="Sold" class="oe_highlight" />
+                            <button name="action_sold" type="object" string="APPLY" class="oe_highlight" />
                         </div>
                         <header>
                             <field name="state" widget="statusbar" />
@@ -58,20 +58,32 @@
                     </div>
                     <div>
                         <h1>
-
+                            <!-- <field name="employee_id"/> -->
                             <field name="name"/>
                         </h1>
                     </div>
                     <group>
                         <group>
-                            <field name="employee_id"/>
-                            <field name="mobile"/>
-                            <field name="name_imp"/>
+                            <!-- <field name="name_imp"/> -->
+                            <!-- <field name="job_title"/>
                             <field name="department"/>
+                            <field name="mobile"/>
+                            <field name="email"/> -->
+
+
+
+
                             <field name="brand"/>
                             <field name="category"/>
-                            <field name="offer_id" widget="many2many_tags"/>
+                            <field name="model"/>
                             <field name="fuel_id"/>
+                            <field name="registration_number"/>
+                            <field name="chassis_number"/>
+
+
+
+
+                            <field name="offer_id" widget="many2many_tags"/>
                             <field name="selling_price"/>
                             <field name="gst"/>
                             <field name="total" />
@@ -85,11 +97,24 @@
                             <field name="model" widget="char"/>
                             <field name="transmission_type"/>
                             <field name="total_airbags"/>
+                            <field name="salesperson_id"/>
+                            <field name="buyer_id"/>
                         </group>
+                        <!-- <group string="Contract Details">
+                            <field name="wraping" />
+                            <field name="amount" />
+                            <label for="tenure"/>
+                            <div class="o_row">
+                                <field name="tenure"/>
+                                <span>Years</span>
+                            </div>
+                            <field name="date_deadline"/>
+
+                        </group> -->
+
                     </group>
                     <notebook>
                         <page string="Description">
-                            <field name="description"/>
                         </page>
                         <page string="Accessories">
                             <group>
@@ -99,8 +124,24 @@
                                 <!-- Passenger airbag only if airbag selected -->
                                 <field name="airbag_passenger" attrs="{'invisible': [('airbag', '=', False)]}"/>
                                 <field name="fog_lights"/>
-
                             </group>
+                        </page>
+                        <page string="Odoo Wrap">
+
+                            <label for="wrap"/>
+                            <div class="o_row">
+                                <field name="wrap" />
+                            </div>
+                                <group attrs="{'invisible': [('wrap', '=', False)]}"> 
+                                    <field name="wraping" />
+                                    <field name="amount" />
+                                    <label for="tenure"/>
+                                    <div class="o_row">
+                                        <field name="tenure"/>
+                                        <span>Years</span>
+                                    </div>
+                                    <field name="date_deadline"/>
+                                </group>
                         </page>
                     </notebook>
 
@@ -126,7 +167,6 @@
                 <field name="brand"/>
                 <field name="category"/>
                 <!-- <field name="fuel_id"/> -->
-
                 <separator/>
                 <filter string="Transmission Type" name="transmission_type" domain="[('transmission_type','in',['auto','manual'])]"/>
                 <group expand="1" string="Group By">
@@ -144,7 +184,7 @@
         <field name="name">car.feature.view.kanban</field>
         <field name="model">car.feature</field>
         <field name="arch" type="xml">
-            <kanban default_group_by="category">
+            <kanban default_group_by="wraping">
                 <field name="name"/>
                 <templates>
                     <t t-name="kanban-box">
@@ -156,8 +196,6 @@
                     </t>
                 </templates>
             </kanban>
-
         </field>
     </record>
-
 </odoo>

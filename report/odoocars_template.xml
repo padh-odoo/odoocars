@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <!-- Template for OdooCars -->
+    <template id="report">
+        <t t-foreach="docs" t-as="odoocars">
+            <t t-call="web.html_container">
+                <t t-call="web.external_layout">
+                    <div class="page">
+                        <h2>
+                            <span t-field="odoocars.employee_id"/>
+                        </h2>
+                        <div>
+                            <strong>Mobile: </strong>
+                            <span t-field="odoocars.mobile"/>
+                        </div>
+                        <div>
+                            <strong>Email: </strong>
+                            <span t-field="odoocars.email"/>
+                        </div>
+                        <div>
+                            <strong>Job Title: </strong>
+                            <span t-field="odoocars.job_title"/>
+                        </div>
+                        <div>
+                            <strong>Department: </strong>
+                            <span t-field="odoocars.department"/>
+                        </div>
+                    </div>
+                    <hr/>
+
+                    <!-- Car Details -->
+                    <div>
+                        <h5>Car Details</h5>
+                    </div>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Brand</th>
+                                <th>Categoty</th>
+                                <th>Model</th>
+                                <th>Fuel Type</th>
+                                <th>Registration Number</th>
+                                <th>Chassis Number</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr  >
+                                <td>
+                                    <span t-field="odoocars.name"/>
+                                </td>
+                                <td>
+                                    <span t-field="odoocars.brand"/>
+                                </td>
+                                <td>
+                                    <span t-field="odoocars.category"/>
+                                </td>
+                                <td>
+                                    <span t-field="odoocars.model"/>
+                                </td>
+                                <td>
+                                    <span t-field="odoocars.fuel_id"/>
+                                </td>
+                                <td>
+                                    <span t-field="odoocars.registration_number"/>
+                                </td>
+                                <td>
+                                    <span t-field="odoocars.chassis_number"/>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <hr/>
+
+                    <!-- Contract Details -->
+                    <div>
+                        <h5>Contract Details</h5>
+                    </div>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Wraping</th>
+                                <th>Tenure</th>
+                                <th>Renewal On</th>
+                                <th>Amount To be Paid</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <span t-field="odoocars.wraping"/>
+                                </td>
+                                <td>
+                                    <span t-field="odoocars.tenure"/>
+                                </td>
+                                <td>
+                                    <span t-field="odoocars.date_deadline"/>
+                                </td>
+                                <td>
+                                    <span t-field="odoocars.amount"/>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </t>
+            </t>
+        </t>
+    </template>
+</odoo>
