@@ -7,6 +7,7 @@ class odoocars_wizard(models.TransientModel):
     new_name=fields.Char(" Category Name")
     
     
+    
    
         
             
