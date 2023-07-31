@@ -27,7 +27,6 @@
                         </div>
                     </div>
                     <hr/>
-
                     <!-- Car Details -->
                     <div>
                         <h5>Car Details</h5>
@@ -45,7 +44,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr  >
+                            <tr>
                                 <td>
                                     <span t-field="odoocars.name"/>
                                 </td>

@@ -14,7 +14,6 @@
 
         <menuitem id="menu_finance_receivables" name="Configuration" sequence="2">
             <menuitem id="menu_pro" name="Car Categories" sequence="1" action="car_categories_action"/>
-            <!-- <menuitem id="menu_fuel" name="Fuel Type" sequence="2" action="fuel_type_action"/> -->
             <menuitem id="menu_brand" name="Car Brand" sequence="3" action="brand_type_action"/>
             <menuitem id="menu_offer" name="Car Offer" sequence="4" action="car_offer_action"/>
         </menuitem>
@@ -34,7 +33,6 @@
                 <field name="name"/>
                 <field name="brand"/>
                 <field name="category"/>
-                <!-- <field name="fuel_id"/> -->
             </tree>
         </field>
     </record>
@@ -58,31 +56,16 @@
                     </div>
                     <div>
                         <h1>
-                            <!-- <field name="employee_id"/> -->
                             <field name="name"/>
                         </h1>
                     </div>
                     <group>
                         <group>
-                            <!-- <field name="name_imp"/> -->
-                            <!-- <field name="job_title"/>
-                            <field name="department"/>
-                            <field name="mobile"/>
-                            <field name="email"/> -->
-
-
-
-
                             <field name="brand"/>
                             <field name="category"/>
-                            <field name="model"/>
                             <field name="fuel_id"/>
                             <field name="registration_number"/>
                             <field name="chassis_number"/>
-
-
-
-
                             <field name="offer_id" widget="many2many_tags"/>
                             <field name="selling_price"/>
                             <field name="gst"/>
@@ -100,18 +83,6 @@
                             <field name="salesperson_id"/>
                             <field name="buyer_id"/>
                         </group>
-                        <!-- <group string="Contract Details">
-                            <field name="wraping" />
-                            <field name="amount" />
-                            <label for="tenure"/>
-                            <div class="o_row">
-                                <field name="tenure"/>
-                                <span>Years</span>
-                            </div>
-                            <field name="date_deadline"/>
-
-                        </group> -->
-
                     </group>
                     <notebook>
                         <page string="Description">
@@ -132,16 +103,16 @@
                             <div class="o_row">
                                 <field name="wrap" />
                             </div>
-                                <group attrs="{'invisible': [('wrap', '=', False)]}"> 
-                                    <field name="wraping" />
-                                    <field name="amount" />
-                                    <label for="tenure"/>
-                                    <div class="o_row">
-                                        <field name="tenure"/>
-                                        <span>Years</span>
-                                    </div>
-                                    <field name="date_deadline"/>
-                                </group>
+                            <group attrs="{'invisible': [('wrap', '=', False)]}">
+                                <field name="wraping" />
+                                <field name="amount" />
+                                <label for="tenure"/>
+                                <div class="o_row">
+                                    <field name="tenure"/>
+                                    <span>Years</span>
+                                </div>
+                                <field name="date_deadline"/>
+                            </group>
                         </page>
                     </notebook>
 
@@ -166,7 +137,6 @@
                 <field name="name"/>
                 <field name="brand"/>
                 <field name="category"/>
-                <!-- <field name="fuel_id"/> -->
                 <separator/>
                 <filter string="Transmission Type" name="transmission_type" domain="[('transmission_type','in',['auto','manual'])]"/>
                 <group expand="1" string="Group By">
